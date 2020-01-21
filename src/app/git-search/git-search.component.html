@@ -1,0 +1,48 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="container">
+  <div class="row header">
+    <div class=" col-md-6 title">
+      <h1>Find your github Account</h1>
+    </div>
+    <div class="col-md-3 search-box">
+      <form>
+        <div class="form-group">
+          <input type="text" class="form-control" name="username" placeholder="enter username" [(ngModel)]="username" (keyup)="searchUser()">
+        </div>
+      </form>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-5">
+      <div class="row">
+        <img src="{{user.avatar_url}}" class="img-fluid">
+      </div>
+      <div class="">
+        <ul class="list styled text">
+          <li>Username  - <a href="{{user.html_url}}">&nbsp; &nbsp;{{user.name}}</a></li>
+          <li>Joined - &nbsp; &nbsp;{{user.created_at}}</li>
+          <li>Followers -&nbsp; &nbsp;{{user.followers}} </li>
+          <li>Following - &nbsp; &nbsp;{{user.following}}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-5 reposit">
+      <h2 class="text-center">Repositories</h2>
+      <div class="repositories" *ngFor="let repo of repos">
+        <h5 class="text-uppercase text-left"><a href="{{repo.html_url}}" target="_blank">{{repo.name}}</a>&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<span class="badge badge-success float-right"><i class="fa fa-code-fork" aria-hidden="true"></i>{{repo.forks}}</span></h5>
+        <p class="repo-p">{{repo.description}}</p>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="text-uppercase" *ngFor="let repo of repos">
+        <p>{{repo.name}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<router-outlet></router-outlet>
